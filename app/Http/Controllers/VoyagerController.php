@@ -85,6 +85,14 @@ class VoyagerController extends VoyagerBaseController
 
             if ($row->type == 'relationship') {
                 if ($row->details->type == 'belongsToMany') {
+                    if ($row->details->table == 'media'){
+                        $files = explode(',', preg_replace('/[\"\[\]]/', '', $content));
+                        $content = [];
+                        foreach ($files as $file) {
+                            $result = $row->details->model::firstOrCreate(['url' => $file]);
+                            $content[] = $result->id;
+                        }
+                    }
                     // Only if select_multiple is working with a relationship
                     $multi_select[] = [
                         'model' => $row->details->model,

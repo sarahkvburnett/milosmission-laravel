@@ -1,11 +1,11 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 
-class Media extends Model
+class AnimalToy extends Model
 {
-    protected $fillable = ['url'];
-
+    
 }
